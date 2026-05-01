@@ -24,9 +24,9 @@ from smmbench import SMMBenchPS
 dir_name = 'surrogate/smm-bench-ps'
 f_ps = SMMBenchPS(dir_name)
 
-# Two random vectors of 64 dimensional continuous variable within the range [0.0, 1.0]
+# 64 dimensional continuous variable within the range [0.0, 1.0]
 rng = np.random.default_rng()
-x = rng.uniform(0.0, 1.0, (2, f_ps.D))
+x = rng.uniform(0.0, 1.0, f_ps.D)
 
 # Evaluation (train_acc_ja)
 feval = f_ps(x)
@@ -49,10 +49,10 @@ f_dfs = SMMBenchDFS(dir_name)
 
 rng = np.random.default_rng()
 
-# Two random vectors of 63 dimensional continuous variable within the range [0.4, 1.5]
-x = rng.uniform(0.4, 1.5, (2, f_dfs.D_x))
-# Two random vectors of 32 dimensional categorical variable with 3 choices (0, 1, 2)
-c = rng.integers(low=0, high=3, size=(2, f_dfs.D_c))
+# 63 dimensional continuous variable within the range [0.4, 1.5]
+x = rng.uniform(0.4, 1.5, f_dfs.D_x)
+# dimensional categorical variable with 3 choices (0, 1, 2)
+c = rng.integers(low=0, high=3, size=f_dfs.D_c)
 
 # Evaluation (train_acc_ja)
 feval = f_dfs(c, x)
