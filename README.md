@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## Prepare surrogate model files
 - Download surrogate model files from <https://drive.google.com/drive/folders/1aeLvUzOwVKqL7vSIdDBMDryJLisxQSXw?usp=sharing>
 - Unzip the downloaded files and place them in the `surrogate/` directory.
-- Example: `surrogate/mmbench-dfs` and `surrogate/smm-bench-ps`
+- Example: `surrogate/smm-bench-dfs` and `surrogate/smm-bench-ps`
 
 ## Simple Example of SMM-Bench-PS
 
@@ -22,17 +22,17 @@ from smmbench import SMMBenchPS
 
 # Load surrogate
 dir_name = 'surrogate/smm-bench-ps'
-f = SMMBenchPS(dir_name)
+f_ps = SMMBenchPS(dir_name)
 
 # Two random vectors of 64 dimensional continuous variable within the range [0.0, 1.0]
 rng = np.random.default_rng()
-x = rng.uniform(0.0, 1.0, (2, f.D))
+x = rng.uniform(0.0, 1.0, (2, f_ps.D))
 
 # Evaluation (train_acc_ja)
-feval = f(x)
+feval = f_ps(x)
 
 # Evaluation (test_acc_ja) for testing merge model
-feval_test = f(x, mode='test_acc')
+feval_test = f_ps(x, mode='test_acc')
 
 print('feval (train): ', feval, ', feval (test): ', feval_test)
 ```
@@ -45,20 +45,20 @@ from smmbench import SMMBenchDFS
 
 # Load surrogate
 dir_name = 'surrogate/smm-bench-dfs'
-f = SMMBenchDFS(dir_name)
+f_dfs = SMMBenchDFS(dir_name)
 
 rng = np.random.default_rng()
 
 # Two random vectors of 63 dimensional continuous variable within the range [0.4, 1.5]
-x = rng.uniform(0.4, 1.5, (2, f.D_x))
+x = rng.uniform(0.4, 1.5, (2, f_dfs.D_x))
 # Two random vectors of 32 dimensional categorical variable with 3 choices (0, 1, 2)
-c = rng.integers(low=0, high=3, size=(2, f.D_c))
+c = rng.integers(low=0, high=3, size=(2, f_dfs.D_c))
 
 # Evaluation (train_acc_ja)
-feval = f(c, x)
+feval = f_dfs(c, x)
 
 # Evaluation (test_acc_ja) for testing merge model
-feval_test = f(c, x, mode='test_acc')
+feval_test = f_dfs(c, x, mode='test_acc')
 
 print('feval (train): ', feval, ', feval (test): ', feval_test)
 ```
