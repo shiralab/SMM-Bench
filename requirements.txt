@@ -1,0 +1,9 @@
+cma==4.0.0
+cmaes==0.12.0
+jupyter==1.1.1
+matplotlib==3.10.0
+numpy==1.26.4
+optuna==4.1.0
+pandas==2.2.3
+scipy==1.15.1
+lightgbm==4.6.0
