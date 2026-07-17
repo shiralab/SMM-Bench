@@ -28,10 +28,10 @@ f_ps = SMMBenchPS(dir_name)
 rng = np.random.default_rng()
 x = rng.uniform(0.0, 1.0, f_ps.D)
 
-# Evaluation (train_acc_ja)
+# Evaluation (train_acc: score on `gsm8k-ja`) for optimization objective
 feval = f_ps(x)
 
-# Evaluation (test_acc_ja) for testing merge model
+# Evaluation (test_acc: score on `MGSM`) for testing merge model
 feval_test = f_ps(x, mode='test_acc')
 
 print('feval (train): ', feval, ', feval (test): ', feval_test)
@@ -54,10 +54,10 @@ x = rng.uniform(0.4, 1.5, f_dfs.D_x)
 # dimensional categorical variable with 3 choices (0, 1, 2)
 c = rng.integers(low=0, high=3, size=f_dfs.D_c)
 
-# Evaluation (train_acc_ja)
+# Evaluation (train_acc: score on `gsm8k-ja`) for optimization objective
 feval = f_dfs(c, x)
 
-# Evaluation (test_acc_ja) for testing merge model
+# Evaluation (test_acc: score on `MGSM`) for testing merge model
 feval_test = f_dfs(c, x, mode='test_acc')
 
 print('feval (train): ', feval, ', feval (test): ', feval_test)
